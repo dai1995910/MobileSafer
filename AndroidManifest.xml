@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.mobilesafer"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="22" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.example.mobilesafer.activity.SplashActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.example.mobilesafer.activity.HomeActivity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.SettingActivity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.LostFindActivity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.Setup1Activity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.Setup2Activity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.Setup3Activity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.Setup4Activity"></activity>
+        <activity android:name="com.example.mobilesafer.activity.ContactActivity"></activity>
+        <receiver android:name="com.example.mobilesafer.receiver.BootCompleteReceiver">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>
