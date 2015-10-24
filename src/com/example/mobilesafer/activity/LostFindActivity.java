@@ -24,6 +24,23 @@ public class LostFindActivity extends Activity{
 		if(configed) {
 			// 设置过
 			setContentView(R.layout.activity_lost_find);
+			//读取配置文件来对组件进行改变
+			tvSafePhone = (TextView) findViewById(R.id.tv_safephone);
+			lock = (ImageView) findViewById(R.id.lock);
+			
+			SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
+			String phone = sp.getString("safe_phone", "");
+			boolean isProtect = sp.getBoolean("protect", false);
+			//改变安全号码组件
+			tvSafePhone.setText(phone);
+			//改变锁图片,使用api：setImageResource
+			if(isProtect) {
+//				lock.setImageResource(R.drawable.lock);
+				lock.setBackgroundResource(R.drawable.lock);
+			} else {
+//				lock.setImageResource(R.drawable.unlock);
+				lock.setBackgroundResource(R.drawable.unlock);
+			}
 		} else {
 			// 说明没有设置过
 			//跳转到设置
@@ -33,25 +50,7 @@ public class LostFindActivity extends Activity{
 			finish();
 		}
 		
-		//读取配置文件来对组件进行改变
-		tvSafePhone = (TextView) findViewById(R.id.tv_safephone);
-		lock = (ImageView) findViewById(R.id.lock);
 		
-		SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
-		String phone = sp.getString("safe_phone", "");
-		boolean isProtect = sp.getBoolean("protect", false);
-		//改变安全号码组件
-		tvSafePhone.setText(phone);
-		//改变锁图片,使用api：setImageResource
-		if(isProtect) {
-			System.out.println("1");
-//			lock.setImageResource(R.drawable.lock);
-			lock.setBackgroundResource(R.drawable.lock);
-		} else {
-			System.out.println("2");
-//			lock.setImageResource(R.drawable.unlock);
-			lock.setBackgroundResource(R.drawable.unlock);
-		}
 	}
 	
 	public void reSet(View v) {

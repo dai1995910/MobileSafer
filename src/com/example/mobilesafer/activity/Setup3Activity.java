@@ -85,7 +85,7 @@ public class Setup3Activity extends BaseSettingActivity {
 		String phone = etNum.getText().toString().trim();
 		// 对字符串进行处理
 		if (!TextUtils.isEmpty(phone)) {
-			sp.edit().putString("safe_phone", phone);
+			sp.edit().putString("safe_phone", phone).commit();
 			startActivity(new Intent(this, Setup4Activity.class));
 			finish();
 			overridePendingTransition(R.anim.tran_in, R.anim.tran_out);
