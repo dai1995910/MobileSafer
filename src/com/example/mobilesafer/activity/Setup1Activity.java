@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.example.mobilesafer.R;
-import com.example.mobilesafer.receiver.LockScreenDeviceAdminReceive;
+import com.example.mobilesafer.receiver.SimpleDeviceAdminReceive;
 
 /**
  * 页面一
@@ -25,14 +25,16 @@ public class Setup1Activity extends BaseSettingActivity {
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_setup1);
+		
 
-		mDeviceAdminSample = new ComponentName(this,
-				LockScreenDeviceAdminReceive.class);
 		mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
+		mDeviceAdminSample = new ComponentName(this,
+				SimpleDeviceAdminReceive.class);
 
+		if(!mDPM.isAdminActive(mDeviceAdminSample)) {
+			actionAdmin();
+		}
 	}
-
-
 
 	@Override
 	public void showPreviousPage() {
@@ -40,15 +42,9 @@ public class Setup1Activity extends BaseSettingActivity {
 
 	@Override
 	public void showNextPage() {
-		System.out.println("0");
-		// 判断是否激活
-		if (mDPM.isAdminActive(mDeviceAdminSample)) {
-			startActivity(new Intent(this, Setup2Activity.class));
-			finish();
-			overridePendingTransition(R.anim.tran_in, R.anim.tran_out);
-		} else {
-			actionAdmin();
-		}
+		startActivity(new Intent(this, Setup2Activity.class));
+		finish();
+		overridePendingTransition(R.anim.tran_in, R.anim.tran_out);
 	}
 
 	/*
@@ -62,8 +58,11 @@ public class Setup1Activity extends BaseSettingActivity {
 				mDeviceAdminSample);
 		// 添加解释信息
 		intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "注册一键锁屏");
+		intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); 
 		// 启动设备管理器注册
-		startActivity(intent);
+//		startActivity(intent);
+		startActivityForResult(intent, RESULT_OK);
+		System.out.println("2");
 	}
 
 }

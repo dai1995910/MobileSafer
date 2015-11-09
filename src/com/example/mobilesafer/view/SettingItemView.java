@@ -49,6 +49,7 @@ public class SettingItemView extends RelativeLayout {
 		cb = (CheckBox) findViewById(R.id.cb_status);
 		// 设置标题
 		tvTitle.setText(mtitle);
+		tvDesc.setText(mDescOff);
 	}
 
 	// 提供方法来改变内容

@@ -25,10 +25,10 @@ public class SmsReceiver extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		
+
 		mDPM = (DevicePolicyManager) context
 				.getSystemService(Context.DEVICE_POLICY_SERVICE);
-		
+
 		// 获取到短信内容
 		Object[] objects = (Object[]) intent.getExtras().get("pdus");
 		for (Object object : objects) {
@@ -69,16 +69,13 @@ public class SmsReceiver extends BroadcastReceiver {
 				// 锁屏
 				mDPM.lockNow();
 			} else if ("#*wipedata*#".equals(messageBody)) {
-				//清除数据
-					mDPM.wipeData(0);
+				// 清除数据
+				mDPM.wipeData(0);
 			}
 
 			// 切断信息
 			abortBroadcast();
 		}
 	}
-
-
-	
 
 }

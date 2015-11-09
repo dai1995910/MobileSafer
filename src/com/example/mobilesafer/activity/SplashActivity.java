@@ -1,6 +1,7 @@
 package com.example.mobilesafer.activity;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -26,7 +27,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,20 +86,22 @@ public class SplashActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.splash_layout);
-		
 
 		tv = (TextView) findViewById(R.id.tv_version);
 		tv.setText("版本号:" + getVersionName());
 
 		tvProgerss = (TextView) findViewById(R.id.tv_progress);
+
+		//拷贝数据库
+		copyDataBase("address.db");
 		
-		//获取配置文件，判断是否自动更新
+		// 获取配置文件，判断是否自动更新
 		SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
 		Boolean autoUpdate = sp.getBoolean("auto_update", true);
-		if(autoUpdate) {
+		if (autoUpdate) {
 			checkVersion();
 		} else {
-			//发送延时信息
+			// 发送延时信息
 			handler.sendEmptyMessageDelayed(CODE_START_HOME, 2000);
 		}
 	}
@@ -228,8 +230,7 @@ public class SplashActivity extends Activity {
 
 		builder.setTitle("最新版本" + mVersionName);
 		builder.setMessage(mDes);
-		
-		
+
 		builder.setPositiveButton("赶快升级吧", new OnClickListener() {
 
 			@Override
@@ -245,9 +246,9 @@ public class SplashActivity extends Activity {
 				startHome();
 			}
 		});
-		
+
 		builder.setOnCancelListener(new OnCancelListener() {
-			
+
 			@Override
 			public void onCancel(DialogInterface dialog) {
 				startHome();
@@ -280,16 +281,18 @@ public class SplashActivity extends Activity {
 				public void onSuccess(ResponseInfo<File> arg0) {
 					Toast.makeText(SplashActivity.this, "下载成功",
 							Toast.LENGTH_SHORT).show();
-					
-					//实现自动打开安装页面
+
+					// 实现自动打开安装页面
 					Intent intent = new Intent(Intent.ACTION_VIEW);
 					intent.addCategory(Intent.CATEGORY_DEFAULT);
 					// type和data如果分开设置是没办法同时设置的
-					intent.setDataAndType(Uri.fromFile(arg0.result), "application/vnd.android.package-archive");
-					//开启安装
-//					startActivity(intent);
+					intent.setDataAndType(Uri.fromFile(arg0.result),
+							"application/vnd.android.package-archive");
+					// 开启安装
+					// startActivity(intent);
 					startActivityForResult(intent, 0);
 				}
+
 				public void onLoading(long total, long current,
 						boolean isUploading) {
 					super.onLoading(total, current, isUploading);
@@ -301,6 +304,7 @@ public class SplashActivity extends Activity {
 						tvProgerss.setVisibility(View.GONE);
 					}
 				}
+
 				// 下载失败的时候
 				public void onFailure(HttpException arg0, String arg1) {
 
@@ -317,7 +321,7 @@ public class SplashActivity extends Activity {
 		}
 
 	}
-	
+
 	/**
 	 * 用于按安装界面回调
 	 */
@@ -333,5 +337,44 @@ public class SplashActivity extends Activity {
 		startActivity(intent);
 		// 一定要finish();
 		finish();
+	}
+
+	/**
+	 * 拷贝数据库
+	 * @param dbName
+	 */
+	private void copyDataBase(String dbName) {
+		InputStream in = null;
+		FileOutputStream out = null;
+		File targetFile = new File(getFilesDir(), dbName);
+		
+		if(targetFile.exists()) {
+			System.out.println("数据库已经存在不用再次拷贝");
+			return ;
+		}
+		
+		// 获取到数据库文件
+		try {
+			in = getAssets().open(dbName);
+			out = new FileOutputStream(targetFile);
+
+			int len = 0;
+			byte[] buffer = new byte[1024];
+			while ((len = in.read(buffer)) != -1) {
+				out.write(buffer, 0, len);
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (in != null && out != null) {
+				try {
+					out.close();
+					in.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 }

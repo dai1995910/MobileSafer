@@ -1,6 +1,7 @@
 package com.example.mobilesafer.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.GestureDetector;
@@ -17,6 +18,7 @@ import android.view.View;
 public abstract class BaseSettingActivity extends Activity {
 	private GestureDetector mGesture;
 	public SharedPreferences sp;
+	public Context context = this;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

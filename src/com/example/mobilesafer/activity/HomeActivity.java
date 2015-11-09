@@ -58,7 +58,7 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断当前单击对象
 				switch (position) {
-				case 0:
+				case 0: {
 					// 手机防盗,判断是否设置了密码
 					String pwd = sp.getString("password", null);
 					if (TextUtils.isEmpty(pwd)) {
@@ -67,6 +67,30 @@ public class HomeActivity extends Activity {
 						showPasswordCheckDialog();
 					}
 					break;
+				}
+
+				case 1: {
+					// 手机通讯卫士
+					Intent i = new Intent(HomeActivity.this,
+							CallSafeActivity.class);
+					startActivity(i);
+					break;
+				}
+				
+				case 2: {
+					// 软件管理
+					Intent i = new Intent(HomeActivity.this,
+							AppManagerActivity.class);
+					startActivity(i);
+					break;
+				}
+				case 7: {
+					// 高级工具
+					Intent i = new Intent(HomeActivity.this,
+							AToolsActivity.class);
+					startActivity(i);
+					break;
+				}
 				case 8:
 					// 设置中心
 					Intent i = new Intent(HomeActivity.this,
@@ -104,7 +128,6 @@ public class HomeActivity extends Activity {
 			public void onClick(View v) {
 				String passw = etP.getText().toString();
 				String savedPassword = sp.getString("password", null);
-				
 
 				if (!TextUtils.isEmpty(passw)) {
 					if (savedPassword.equals(Md5Utils.encode(passw))) {
@@ -176,7 +199,7 @@ public class HomeActivity extends Activity {
 
 						dialog.dismiss();
 						startActivity(new Intent(HomeActivity.this,
-								LostFindActivity.class));//打开下个Activity
+								LostFindActivity.class));// 打开下个Activity
 					} else {
 						Toast.makeText(HomeActivity.this, "两次密码不相同",
 								Toast.LENGTH_SHORT).show();
