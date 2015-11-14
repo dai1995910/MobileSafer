@@ -16,7 +16,7 @@ import com.example.mobilesafer.receiver.CallSafeReceiver;
 import com.example.mobilesafer.receiver.OutCallReceiver;
 import com.example.mobilesafer.service.AddressService;
 import com.example.mobilesafer.service.CallSafeService;
-import com.example.mobilesafer.utils.ServiceStatusUtils;
+import com.example.mobilesafer.utils.SystemInfoUtils;
 import com.example.mobilesafer.view.SettingClickView;
 import com.example.mobilesafer.view.SettingItemView;
 
@@ -65,7 +65,7 @@ public class SettingActivity extends Activity {
 	private void initCallSafe() {
 		final Intent i = new Intent(this, CallSafeService.class);
 
-		if (!ServiceStatusUtils.isServiceRunning(this,
+		if (!SystemInfoUtils.isServiceRunning(this,
 				"com.example.mobilesafer.service.CallSafeService")) {
 			siv_callsafe.setChecked(false);
 		} else {
@@ -95,7 +95,7 @@ public class SettingActivity extends Activity {
 	private void initAddressService() {
 		final Intent i = new Intent(this, AddressService.class);
 
-		if (!ServiceStatusUtils.isServiceRunning(this,
+		if (!SystemInfoUtils.isServiceRunning(this,
 				"com.example.mobilesafer.service.AddressService")) {
 			sivAddress.setChecked(false);
 		} else {

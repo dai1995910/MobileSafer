@@ -19,8 +19,20 @@ public class AToolsActivity extends Activity {
 		setContentView(R.layout.activity_atools);
 	}
 	
+	/**
+	 * 查询归属地
+	 * @param v
+	 */
 	public void queryPhoneNum(View v) {
 		Intent i = new Intent(this , AddressActivity.class);
+		startActivity(i);
+	}
+	
+	/**
+	 * 短信备份
+	 */
+	public void backUpSms(View v) {
+		Intent i = new Intent(this , BackUpSmsActivity.class);
 		startActivity(i);
 	}
 }

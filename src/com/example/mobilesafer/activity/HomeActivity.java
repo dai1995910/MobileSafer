@@ -58,8 +58,9 @@ public class HomeActivity extends Activity {
 					int position, long id) {
 				// 判断当前单击对象
 				switch (position) {
+
+				// 手机防盗,判断是否设置了密码
 				case 0: {
-					// 手机防盗,判断是否设置了密码
 					String pwd = sp.getString("password", null);
 					if (TextUtils.isEmpty(pwd)) {
 						showPasswordDialog();
@@ -69,30 +70,39 @@ public class HomeActivity extends Activity {
 					break;
 				}
 
+				// 手机通讯卫士
 				case 1: {
-					// 手机通讯卫士
 					Intent i = new Intent(HomeActivity.this,
 							CallSafeActivity.class);
 					startActivity(i);
 					break;
 				}
-				
+
+				// 软件管理
 				case 2: {
-					// 软件管理
 					Intent i = new Intent(HomeActivity.this,
 							AppManagerActivity.class);
 					startActivity(i);
 					break;
 				}
+
+				// 进程管理
+				case 3: {
+					Intent i = new Intent(HomeActivity.this,
+							TaskManagerActivity.class);
+					startActivity(i);
+					break;
+				}
+
+				// 高级工具
 				case 7: {
-					// 高级工具
 					Intent i = new Intent(HomeActivity.this,
 							AToolsActivity.class);
 					startActivity(i);
 					break;
 				}
+				// 设置中心
 				case 8:
-					// 设置中心
 					Intent i = new Intent(HomeActivity.this,
 							SettingActivity.class);
 					startActivity(i);

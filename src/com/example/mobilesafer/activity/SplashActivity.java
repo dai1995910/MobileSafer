@@ -95,6 +95,9 @@ public class SplashActivity extends Activity {
 		//拷贝数据库
 		copyDataBase("address.db");
 		
+		//建立快捷方式
+		createShortcut();
+		
 		// 获取配置文件，判断是否自动更新
 		SharedPreferences sp = getSharedPreferences("config", MODE_PRIVATE);
 		Boolean autoUpdate = sp.getBoolean("auto_update", true);
@@ -104,6 +107,24 @@ public class SplashActivity extends Activity {
 			// 发送延时信息
 			handler.sendEmptyMessageDelayed(CODE_START_HOME, 2000);
 		}
+	}
+
+	/**
+	 * 创建快捷方式
+	 */
+	private void createShortcut() {
+		Intent i = new Intent();
+		i.setAction("com.android.launcher.action.INSTALL_SHORTCUT");
+		i.putExtra(Intent.EXTRA_SHORTCUT_ICON_RESOURCE, R.drawable.ic_launcher);//设置图标
+		i.putExtra(Intent.EXTRA_SHORTCUT_NAME , "手机卫士");
+		
+		Intent doWhat = new Intent();
+		doWhat.setAction("com.dwb.mobilesafer");
+		doWhat.addCategory(Intent.CATEGORY_DEFAULT);
+		i.putExtra(Intent.EXTRA_SHORTCUT_INTENT, doWhat);
+		// 防止重复生成快捷图标
+		i.putExtra("duplicate", false);
+		sendBroadcast(i);
 	}
 
 	/**
