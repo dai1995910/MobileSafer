@@ -93,6 +93,9 @@
         <!-- 进程管理设置页面 -->
         <activity android:name="com.example.mobilesafer.activity.TaskManagerSettingActivity" >
         </activity>
+         <!-- 杀毒页面 -->
+        <activity android:name="com.example.mobilesafer.activity.AntivirusActivity" >
+        </activity>
 
         <receiver android:name="com.example.mobilesafer.receiver.BootCompleteReceiver" >
             <intent-filter>
@@ -117,6 +120,23 @@
                 <action android:name="android.app.action.DEVICE_ADMIN_ENABLED" />
             </intent-filter>
         </receiver>
+        <!-- 桌面小部件的配置 -->
+        <receiver android:name="com.example.mobilesafer.receiver.MyAppWidget" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/example_appwidget_info" />
+        </receiver>
+
+        <!-- 清除进程接受者 -->
+        <receiver android:name="com.example.mobilesafer.receiver.KillProcessReceiver" >
+            <intent-filter>
+                <action android:name="com.dwb.mobilesafer" />
+            </intent-filter>
+        </receiver>
 
         <service android:name="com.example.mobilesafer.service.LocationSerivce" >
         </service>
@@ -126,6 +146,9 @@
         </service>
         <!-- 杀死进程的服务 -->
         <service android:name="com.example.mobilesafer.service.KillProcessService" >
+        </service>
+        <!-- 杀死进程用于widget的服务 -->
+        <service android:name="com.example.mobilesafer.service.KillProcessWidgetService" >
         </service>
     </application>
 

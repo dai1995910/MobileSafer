@@ -94,6 +94,7 @@ public class SplashActivity extends Activity {
 
 		//拷贝数据库
 		copyDataBase("address.db");
+		copyDataBase("antivirus.db");
 		
 		//建立快捷方式
 		createShortcut();

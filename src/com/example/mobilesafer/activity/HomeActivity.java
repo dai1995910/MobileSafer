@@ -94,6 +94,14 @@ public class HomeActivity extends Activity {
 					break;
 				}
 
+				// 手机杀毒
+				case 5: {
+					Intent i = new Intent(HomeActivity.this,
+							AntivirusActivity.class);
+					startActivity(i);
+					break;
+				}
+
 				// 高级工具
 				case 7: {
 					Intent i = new Intent(HomeActivity.this,
