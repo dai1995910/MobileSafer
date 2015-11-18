@@ -96,6 +96,10 @@
          <!-- 杀毒页面 -->
         <activity android:name="com.example.mobilesafer.activity.AntivirusActivity" >
         </activity>
+        <!-- 程序锁界面 -->
+        <activity android:name="com.example.mobilesafer.activity.AppLockActivity" >
+        </activity>
+        
 
         <receiver android:name="com.example.mobilesafer.receiver.BootCompleteReceiver" >
             <intent-filter>

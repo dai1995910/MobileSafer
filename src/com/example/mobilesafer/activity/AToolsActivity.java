@@ -35,4 +35,13 @@ public class AToolsActivity extends Activity {
 		Intent i = new Intent(this , BackUpSmsActivity.class);
 		startActivity(i);
 	}
+	
+	/**
+	 *  ³ÌÐòËø
+	 * @param v
+	 */
+	public void appLock(View v) {
+		Intent i = new Intent(this , AppLockActivity.class);
+		startActivity(i);
+	}
 }
