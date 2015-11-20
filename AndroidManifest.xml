@@ -37,6 +37,7 @@
 
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="com.android.launcher.permission.INSTALL_SHORTCUT" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <application
         android:allowBackup="true"
@@ -99,6 +100,9 @@
         <!-- 程序锁界面 -->
         <activity android:name="com.example.mobilesafer.activity.AppLockActivity" >
         </activity>
+         <!-- 程序锁输密码界面 -->
+        <activity android:name="com.example.mobilesafer.activity.EnterPwdActivity" >
+        </activity>
         
 
         <receiver android:name="com.example.mobilesafer.receiver.BootCompleteReceiver" >
@@ -153,6 +157,9 @@
         </service>
         <!-- 杀死进程用于widget的服务 -->
         <service android:name="com.example.mobilesafer.service.KillProcessWidgetService" >
+        </service>
+         <!-- 看门狗的服务 -->
+        <service android:name="com.example.mobilesafer.service.WatchDogService" >
         </service>
     </application>
 

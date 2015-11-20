@@ -10,6 +10,7 @@ import android.text.format.Formatter;
 import com.example.mobilesafer.bean.AppInfo;
 import com.example.mobilesafer.bean.BlackNumberInfo;
 import com.example.mobilesafer.bean.TaskInfo;
+import com.example.mobilesafer.db.dao.AppLockDao;
 import com.example.mobilesafer.db.dao.BlackNumberDao;
 import com.example.mobilesafer.engine.AppInfos;
 import com.example.mobilesafer.engine.TaskInfoParser;
@@ -90,19 +91,37 @@ public class Test extends AndroidTestCase {
 //		System.out.println("avilSize : " + avilSize);
 //	}
 	
-	public void testTaskInfoParser() {
-		List<TaskInfo> taskInfos = TaskInfoParser.getTaskInfos(getContext());
-		for(TaskInfo info : taskInfos) {
-			String appName = info.getAppName();
-			Drawable icon = info.getIcon();
-			long memorySize = info.getMemorySize();
-			String formatFileSize = Formatter.formatFileSize(getContext(), memorySize*1024);
-			String packageName = info.getPackageName();
-			System.out.println("appName : " +appName);
-			System.out.println("icon : " +icon);
-			System.out.println("formatFileSize : " +formatFileSize);
-			System.out.println("packageName : " +packageName);
-			System.out.println("------------------------------------");
-		}
+//	public void testTaskInfoParser() {
+//		List<TaskInfo> taskInfos = TaskInfoParser.getTaskInfos(getContext());
+//		for(TaskInfo info : taskInfos) {
+//			String appName = info.getAppName();
+//			Drawable icon = info.getIcon();
+//			long memorySize = info.getMemorySize();
+//			String formatFileSize = Formatter.formatFileSize(getContext(), memorySize*1024);
+//			String packageName = info.getPackageName();
+//			System.out.println("appName : " +appName);
+//			System.out.println("icon : " +icon);
+//			System.out.println("formatFileSize : " +formatFileSize);
+//			System.out.println("packageName : " +packageName);
+//			System.out.println("------------------------------------");
+//		}
+//	}
+	
+	public void testAppLockDao() {
+		//add
+//		String str = "com.dwb.test";
+//		for(int count = 1; count < 10; count++) {
+//			str = str + count;
+//			System.out.println(str);
+//			AppLockDao.addLockApp(getContext(), str);
+//		}
+		
+//		//delete
+//		boolean flag = AppLockDao.delete(getContext(), "com.dwb.test1");
+//		System.out.println(flag);
+		
+//		//ÖØ¸´Ìí¼Ó
+//		boolean flag = AppLockDao.addLockApp(getContext(), "com.dwb.test12");
+//		System.out.println(flag);
 	}
 }

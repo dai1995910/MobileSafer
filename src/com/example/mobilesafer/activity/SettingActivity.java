@@ -16,6 +16,7 @@ import com.example.mobilesafer.receiver.CallSafeReceiver;
 import com.example.mobilesafer.receiver.OutCallReceiver;
 import com.example.mobilesafer.service.AddressService;
 import com.example.mobilesafer.service.CallSafeService;
+import com.example.mobilesafer.service.WatchDogService;
 import com.example.mobilesafer.utils.SystemInfoUtils;
 import com.example.mobilesafer.view.SettingClickView;
 import com.example.mobilesafer.view.SettingItemView;
@@ -43,6 +44,9 @@ public class SettingActivity extends Activity {
 		sivAddress = (SettingItemView) findViewById(R.id.siv_address);
 		// 设置来电显示服务
 		siv_callsafe = (SettingItemView) findViewById(R.id.siv_callsafe);
+		//设置看门狗
+		siv_watch_dog = (SettingItemView) findViewById(R.id.siv_watch_dog);
+		
 		// 初始化自动更新
 		initUpdata();
 
@@ -57,6 +61,39 @@ public class SettingActivity extends Activity {
 
 		// 初始化黑名单拦截
 		initCallSafe();
+		
+		//初始化看门狗
+		initWatchDog();
+		
+	}
+
+	/**
+	 * 初始化看门狗
+	 */
+	private void initWatchDog() {
+		final Intent i = new Intent(this, WatchDogService.class);
+
+		if (!SystemInfoUtils.isServiceRunning(this,
+				"com.example.mobilesafer.service.WatchDogService")) {
+			siv_watch_dog.setChecked(false);
+		} else {
+			siv_watch_dog.setChecked(true);
+		}
+
+		siv_watch_dog.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (siv_watch_dog.isChecked()) {
+					siv_watch_dog.setChecked(false);
+					stopService(i);
+
+				} else {
+					siv_watch_dog.setChecked(true);
+					startService(i);
+				}
+			}
+		});
 	}
 
 	/**
@@ -158,6 +195,7 @@ public class SettingActivity extends Activity {
 	 */
 	final String[] items = new String[] { "半透明", "活力橙", "卫士蓝", "金属灰", "苹果绿" };
 	private SettingClickView scv;
+	private SettingItemView siv_watch_dog;
 
 	public void initAddressStyle() {
 		scv = (SettingClickView) findViewById(R.id.scv_address);

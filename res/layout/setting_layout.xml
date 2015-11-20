@@ -51,5 +51,14 @@
         dwb:desc_off="黑名单拦截已经关闭"
         dwb:desc_on="黑名单拦截已经开启"
         />
+    
+     <com.example.mobilesafer.view.SettingItemView
+        android:id="@+id/siv_watch_dog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        dwb:title="看门狗设置"
+        dwb:desc_off="看门狗已经关闭"
+        dwb:desc_on="看门狗已经开启"
+        />
 
 </LinearLayout>

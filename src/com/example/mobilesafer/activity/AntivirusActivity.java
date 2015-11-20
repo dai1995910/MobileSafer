@@ -12,10 +12,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.mobilesafer.R;
@@ -84,6 +86,7 @@ public class AntivirusActivity extends Activity {
 		tv_status = (TextView) findViewById(R.id.tv_status);
 		pb = (ProgressBar) findViewById(R.id.pb_progress);
 		ll = (LinearLayout) findViewById(R.id.ll_contenter);
+		final ScrollView sv = (ScrollView) findViewById(R.id.sv);
 
 		scanning = (ImageView) findViewById(R.id.scanning);
 		RotateAnimation rA = new RotateAnimation(0, 360,
@@ -92,6 +95,13 @@ public class AntivirusActivity extends Activity {
 		rA.setDuration(500);
 		rA.setRepeatCount(-1);
 		scanning.startAnimation(rA);
+		
+		sv.post(new Runnable() {
+			@Override
+			public void run() {
+				sv.fullScroll(sv.FOCUS_DOWN);
+			}
+		});
 	}
 
 	/**
