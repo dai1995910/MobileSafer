@@ -10,6 +10,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 
+import com.example.mobilesafer.R;
 import com.example.mobilesafer.bean.AppInfo;
 
 /**
@@ -40,7 +41,6 @@ public class AppInfos {
 			//获取apk名称
 			String apkName = packageInfo.applicationInfo.loadLabel(manager).toString();
 			info.setApkName(apkName);
-			
 			//获取图标
 			Drawable icon = packageInfo.applicationInfo.loadIcon(manager);
 			info.setIcon(icon);
@@ -71,5 +71,35 @@ public class AppInfos {
 		}
 		
 		return appList;
+	}
+	
+	/**
+	 * 获取到已经安装的应用程序的uid和名称
+	 * @param context
+	 * @return
+	 */
+	public static List<AppInfo> getAppsUid(Context context) {
+		PackageManager packageManager = context.getPackageManager();
+		List<ApplicationInfo> installedApplications = packageManager.getInstalledApplications(0);
+		
+		ArrayList<AppInfo> uids = new ArrayList<AppInfo>();
+		
+		for (ApplicationInfo applicationInfo : installedApplications) {
+			AppInfo info = new AppInfo();
+			
+			int uid = applicationInfo.uid;
+			String label = applicationInfo.loadLabel(packageManager).toString();
+			Drawable icon = applicationInfo.loadIcon(packageManager);
+			
+			info.setUid(uid);
+			info.setApkName(label);
+			if(icon == null) {
+				icon = context.getResources().getDrawable(R.drawable.ic_launcher, null);
+			}
+			info.setIcon(icon);
+			
+			uids.add(info);
+		}
+		return uids;
 	}
 }

@@ -93,6 +93,14 @@ public class HomeActivity extends Activity {
 					startActivity(i);
 					break;
 				}
+				
+				// 进程管理
+				case 4: {
+					Intent i = new Intent(HomeActivity.this,
+							TrafficManagerActivity.class);
+					startActivity(i);
+					break;
+				}
 
 				// 手机杀毒
 				case 5: {

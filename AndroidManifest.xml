@@ -100,6 +100,9 @@
         <!-- 程序锁界面 -->
         <activity android:name="com.example.mobilesafer.activity.AppLockActivity" >
         </activity>
+        <!-- 流量管理界面 -->
+        <activity android:name="com.example.mobilesafer.activity.TrafficManagerActivity" >
+        </activity>
          <!-- 程序锁输密码界面 -->
         <activity android:name="com.example.mobilesafer.activity.EnterPwdActivity" 
             android:launchMode="singleInstance">

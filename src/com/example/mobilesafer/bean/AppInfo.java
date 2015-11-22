@@ -21,6 +21,16 @@ public class AppInfo {
 	 * °üÃû
 	 */
 	private String apkPackageName;
+	/*
+	 * uid
+	 */
+	private int uid;
+	public int getUid() {
+		return uid;
+	}
+	public void setUid(int uid) {
+		this.uid = uid;
+	}
 	public String getApkName() {
 		return apkName;
 	}
