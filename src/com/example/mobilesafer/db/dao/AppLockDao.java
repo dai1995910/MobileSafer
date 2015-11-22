@@ -1,9 +1,13 @@
 package com.example.mobilesafer.db.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 
 public class AppLockDao {
 
@@ -37,9 +41,12 @@ public class AppLockDao {
 		db.close();
 		dao.close();
 
+		// 注册一个内容提醒
+		context.getContentResolver().notifyChange(Uri.parse("com.example.mobilesafer.change"), null);
 		if (insert == -1) {
 			return false;
 		}
+		
 		return true;
 	}
 
@@ -58,6 +65,9 @@ public class AppLockDao {
 
 		db.close();
 		dao.close();
+		
+		// 注册一个内容提醒
+		context.getContentResolver().notifyChange(Uri.parse("com.example.mobilesafer.change"), null);
 
 		if (delete == 0) {
 			return false;
@@ -88,5 +98,25 @@ public class AppLockDao {
 		} else {
 			return false;
 		}
+	}
+	
+	/**
+	 * 拿到所有已经添加保护的程序
+	 * @return 返回一个装有所有已经保护的程序的packagename的list
+	 */
+	public List<String> findAll() {
+		AppLockOpenHelper dao = new AppLockOpenHelper(context);
+		SQLiteDatabase db = dao.getWritableDatabase();
+		
+		ArrayList<String> results = new ArrayList<String>();
+		
+		Cursor cursor = db.rawQuery("select packagename from addedappinfo", null);
+			
+		while(cursor.moveToNext()) {
+			String packageName = cursor.getString(0);
+			results.add(packageName);
+		}
+		System.out.println(results);
+		return results;
 	}
 }

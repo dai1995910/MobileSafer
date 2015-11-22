@@ -107,7 +107,7 @@ public class Test extends AndroidTestCase {
 //		}
 //	}
 	
-	public void testAppLockDao() {
+//	public void testAppLockDao() {
 		//add
 //		String str = "com.dwb.test";
 //		for(int count = 1; count < 10; count++) {
@@ -123,5 +123,10 @@ public class Test extends AndroidTestCase {
 //		//ÖØ¸´Ìí¼Ó
 //		boolean flag = AppLockDao.addLockApp(getContext(), "com.dwb.test12");
 //		System.out.println(flag);
+//	}
+	
+	public void testFindAll() {
+		AppLockDao dao = new AppLockDao(getContext());
+		dao.findAll();
 	}
 }

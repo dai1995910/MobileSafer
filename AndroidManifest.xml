@@ -101,7 +101,8 @@
         <activity android:name="com.example.mobilesafer.activity.AppLockActivity" >
         </activity>
          <!-- 程序锁输密码界面 -->
-        <activity android:name="com.example.mobilesafer.activity.EnterPwdActivity" >
+        <activity android:name="com.example.mobilesafer.activity.EnterPwdActivity" 
+            android:launchMode="singleInstance">
         </activity>
         
 
@@ -159,7 +160,7 @@
         <service android:name="com.example.mobilesafer.service.KillProcessWidgetService" >
         </service>
          <!-- 看门狗的服务 -->
-        <service android:name="com.example.mobilesafer.service.WatchDogService" >
+        <service android:name="com.example.mobilesafer.service.WatchDogServiceUpdate" >
         </service>
     </application>
 

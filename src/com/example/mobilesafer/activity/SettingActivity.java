@@ -17,6 +17,7 @@ import com.example.mobilesafer.receiver.OutCallReceiver;
 import com.example.mobilesafer.service.AddressService;
 import com.example.mobilesafer.service.CallSafeService;
 import com.example.mobilesafer.service.WatchDogService;
+import com.example.mobilesafer.service.WatchDogServiceUpdate;
 import com.example.mobilesafer.utils.SystemInfoUtils;
 import com.example.mobilesafer.view.SettingClickView;
 import com.example.mobilesafer.view.SettingItemView;
@@ -71,24 +72,23 @@ public class SettingActivity extends Activity {
 	 * 初始化看门狗
 	 */
 	private void initWatchDog() {
-		final Intent i = new Intent(this, WatchDogService.class);
+		final Intent i = new Intent(this, WatchDogServiceUpdate.class);
 
 		if (!SystemInfoUtils.isServiceRunning(this,
-				"com.example.mobilesafer.service.WatchDogService")) {
+				"com.example.mobilesafer.service.WatchDogServiceUpdate")) {
 			siv_watch_dog.setChecked(false);
 		} else {
 			siv_watch_dog.setChecked(true);
 		}
 
 		siv_watch_dog.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				if (siv_watch_dog.isChecked()) {
 					siv_watch_dog.setChecked(false);
 					stopService(i);
-
 				} else {
+					System.out.println("start service");
 					siv_watch_dog.setChecked(true);
 					startService(i);
 				}
