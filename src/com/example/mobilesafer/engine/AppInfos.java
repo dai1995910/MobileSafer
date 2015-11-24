@@ -94,7 +94,7 @@ public class AppInfos {
 			info.setUid(uid);
 			info.setApkName(label);
 			if(icon == null) {
-				icon = context.getResources().getDrawable(R.drawable.ic_launcher, null);
+				icon = context.getResources().getDrawable(R.drawable.ic_launcher);
 			}
 			info.setIcon(icon);
 			

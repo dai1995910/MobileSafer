@@ -109,6 +109,14 @@ public class HomeActivity extends Activity {
 					startActivity(i);
 					break;
 				}
+				
+				// 缓存清理
+				case 6: {
+					Intent i = new Intent(HomeActivity.this,
+							CleanCacheActivity.class);
+					startActivity(i);
+					break;
+				}
 
 				// 高级工具
 				case 7: {
