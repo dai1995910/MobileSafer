@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.IPackageDataObserver;
 import android.content.pm.IPackageStatsObserver;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -14,11 +15,13 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
 import android.os.RemoteException;
 import android.os.SystemClock;
 import android.os.UserHandle;
 import android.text.format.Formatter;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
@@ -125,9 +128,7 @@ public class CleanCacheActivity extends Activity {
 				super.run();
 				for (PackageInfo packageInfo : installedPackages) {
 					queryAppCache(packageInfo);
-//					System.out.println("2");
 				}
-//				System.out.println("3");
 				// handle.sendEmptyMessage(0);
 			}
 		}.start();
@@ -232,6 +233,7 @@ public class CleanCacheActivity extends Activity {
 	/**
 	 * 清理所有
 	 * 稍后更新
+	 * 注意权限：android.permission.CLEAR_APP_CACHE
 	 * @param v
 	 */
 	public void cleanAll(View v) {
@@ -240,8 +242,8 @@ public class CleanCacheActivity extends Activity {
 		for (Method method : methods) {
 			if(method.getName().equals("freeStorageAndNotify")) {
 				try {
-					method.invoke(packageManager, Integer.MAX_VALUE , new MyIPackageStatsObserver(null));
-					System.out.println("invoke!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+					method.invoke(packageManager, Integer.MAX_VALUE , new MyPackageDataObserver());
+					Log.e("test", "invok~~~~~");
 				} catch(Exception e) {
 					e.printStackTrace();
 				}
@@ -250,9 +252,25 @@ public class CleanCacheActivity extends Activity {
 		UIUtils.showToast(this, "全部清除");
 	}
 	
-//	class MyPackageDataObserver implements IPackageDataObserver.Stub{
-//		
-//	}
+	/**
+	 * 用于清除所有用的类
+	 * @author admin
+	 *
+	 */
+	class MyPackageDataObserver implements IPackageDataObserver{
+
+		@Override
+		public IBinder asBinder() {
+			return null;
+		}
+
+		@Override
+		public void onRemoveCompleted(String packageName, boolean succeeded)
+				throws RemoteException {
+			Log.d("test", packageName + ":" + succeeded);
+		}
+		
+	}
 
 	/**
 	 * 用于初始化ListView的Adapter
@@ -321,7 +339,6 @@ public class CleanCacheActivity extends Activity {
 							detail_intent.addCategory(Intent.CATEGORY_DEFAULT);
 							detail_intent.setData(Uri.parse("package:"
 									+ item.packageName));
-
 							startActivity(detail_intent);
 						}
 					});
