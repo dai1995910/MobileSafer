@@ -72,7 +72,7 @@ public class Setup2Activity extends BaseSettingActivity {
 		//如果没有绑定则不能进行跳转
 		String sim = sp.getString("sim", null);
 		if(!TextUtils.isEmpty(sim)) {
-			startActivity(new Intent(this, Setup3Activity.class));
+			startActivity(new Intent(this, Setup3Activity1.class));
 			finish();
 			overridePendingTransition(R.anim.tran_in, R.anim.tran_out);
 		} else {

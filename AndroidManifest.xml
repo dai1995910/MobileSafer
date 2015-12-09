@@ -68,24 +68,34 @@
         </activity>
         <activity android:name="com.example.mobilesafer.activity.LostFindActivity" >
         </activity>
+        <!-- 手机防盗4个设置页面 -->
         <activity android:name="com.example.mobilesafer.activity.Setup1Activity" >
         </activity>
         <activity android:name="com.example.mobilesafer.activity.Setup2Activity" >
         </activity>
+        <!-- 已废弃，改用Setup3Activity1 -->
         <activity android:name="com.example.mobilesafer.activity.Setup3Activity" >
+        </activity>
+        <activity android:name="com.example.mobilesafer.activity.Setup3Activity1" >
         </activity>
         <activity android:name="com.example.mobilesafer.activity.Setup4Activity" >
         </activity>
+        <!-- 选择联系人页面  已废弃 -->
         <activity android:name="com.example.mobilesafer.activity.ContactActivity" >
         </activity>
+        
+        <!-- 高级工具页面 -->
         <activity android:name="com.example.mobilesafer.activity.AToolsActivity" >
         </activity>
+        <!--  -->
         <activity android:name="com.example.mobilesafer.activity.AddressActivity" >
         </activity>
         <activity android:name="com.example.mobilesafer.activity.DragViewActivity" >
         </activity>
+        <!-- 通话卫士页面 -->
         <activity android:name="com.example.mobilesafer.activity.CallSafeActivity" >
         </activity>
+        <!-- 应用管理页面 -->
         <activity android:name="com.example.mobilesafer.activity.AppManagerActivity" >
         </activity>
         <activity android:name="com.example.mobilesafer.activity.BackUpSmsActivity" >

@@ -66,7 +66,7 @@ public class Setup4Activity extends BaseSettingActivity {
 
 	@Override
 	public void showPreviousPage() {
-		startActivity(new Intent(this, Setup3Activity.class));
+		startActivity(new Intent(this, Setup3Activity1.class));
 		finish();
 		overridePendingTransition(R.anim.tran_previous_in, R.anim.tran_previous_out);
 	
