@@ -270,6 +270,7 @@ public class CallSafeActivity extends Activity {
 
 	static class ViewHolder {
 		TextView tvNumber;
+		
 		TextView tvMode;
 		ImageView ivDelete;
 	}
