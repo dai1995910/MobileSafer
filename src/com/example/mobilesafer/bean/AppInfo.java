@@ -2,6 +2,11 @@ package com.example.mobilesafer.bean;
 
 import android.graphics.drawable.Drawable;
 
+/**
+ * 存放应用信息的bean
+ * @author admin
+ *
+ */
 public class AppInfo {
 	private String apkName;
 	private long apkSize;

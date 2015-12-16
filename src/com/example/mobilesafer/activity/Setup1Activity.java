@@ -26,7 +26,10 @@ public class Setup1Activity extends BaseSettingActivity {
 
 		setContentView(R.layout.activity_setup1);
 		
-
+		/*
+		 * 用于设置设备管理器
+		 * 还存在bug
+		 */
 		mDPM = (DevicePolicyManager) getSystemService(Context.DEVICE_POLICY_SERVICE);
 		mDeviceAdminSample = new ComponentName(this,
 				SimpleDeviceAdminReceive.class);

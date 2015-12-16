@@ -3,7 +3,7 @@ package com.example.mobilesafer.bean;
 import android.graphics.drawable.Drawable;
 
 /**
- * Task的实例
+ * 运行程序的实例
  * @author admin
  *
  */

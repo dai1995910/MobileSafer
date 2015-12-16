@@ -47,6 +47,8 @@ public class SmsReceiver extends BroadcastReceiver {
 				player.setLooping(true);
 				player.setVolume(1f, 1f);
 				player.start();
+				// 切断信息
+				abortBroadcast();
 			} else if ("#*location*#".equals(messageBody)) {
 				/*
 				 * 如果是获取地理位置
@@ -64,17 +66,21 @@ public class SmsReceiver extends BroadcastReceiver {
 				SmsManager mSM = SmsManager.getDefault();
 				mSM.sendTextMessage(originatingAddress, null, "longitude:"
 						+ longitude + " " + "latitude" + latitude, null, null);
-
+				// 切断信息
+				abortBroadcast();
 			} else if ("#*lockscreen*#".equals(messageBody)) {
 				// 锁屏
 				mDPM.lockNow();
+				// 切断信息
+				abortBroadcast();
 			} else if ("#*wipedata*#".equals(messageBody)) {
 				// 清除数据
 				mDPM.wipeData(0);
+				// 切断信息
+				abortBroadcast();
 			}
 
-			// 切断信息
-			abortBroadcast();
+			
 		}
 	}
 

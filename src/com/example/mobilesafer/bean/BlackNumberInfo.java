@@ -1,5 +1,10 @@
 package com.example.mobilesafer.bean;
 
+/**
+ *  ºÚÃûµ¥ºÅÂëµÄbean
+ * @author admin
+ *
+ */
 public class BlackNumberInfo {
 	private String number;
 	private String mode;

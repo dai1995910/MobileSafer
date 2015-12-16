@@ -4,7 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 /**
- * 归属地查询工具
+ * 归属地查询
  * 
  * @author admin
  *
@@ -78,9 +78,7 @@ public class AddressDao {
 					cursor.close();
 				}
 			}
-
 			}
-
 		}
 		db.close();
 		return location;

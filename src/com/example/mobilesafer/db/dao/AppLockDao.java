@@ -9,6 +9,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 
+/**
+ * 应用加锁的dao
+ * @author admin
+ *
+ */
 public class AppLockDao {
 
 	private Context context;
